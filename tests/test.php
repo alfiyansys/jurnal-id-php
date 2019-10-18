@@ -7,3 +7,4 @@ use JurnalID\JurnalWrapper;
 $jurnal = new JurnalWrapper("testatasasedadasda");
 
 echo $jurnal->get_api_key();
+echo $jurnal->get_endpoint();
