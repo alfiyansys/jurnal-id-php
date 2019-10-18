@@ -25,7 +25,32 @@ class JurnalWrapper{
 	$payload : Data payload as array
 	$HTTP : HTTP request method
 	*/
-	function jurnal_exec($cmd, $payload = array(),$HTTP = "GET"){
+	public function jurnal_exec($cmd, $payload = array(),$HTTP = "GET"){
+		$url = ($this->production)?SELF::API:SELF::SANDBOX_API;
 
+		$client = new http\Client;
+		$request = new http\Client\Request;
+
+		$body = new http\Message\Body;
+
+		$body->append(json_encode($payload));
+
+		$request->setRequestUrl($url.$cmd);
+		$request->setRequestMethod($HTTP);
+		$request->setBody($body);
+
+		$request->setQuery(new http\QueryString(array(
+			'include_archive' => 'true'
+		)));
+
+		$request->setHeaders(array(
+			'content-type' => 'application/json',
+			'apikey' => $this->apikey
+		));
+
+		$client->enqueue($request)->send();
+		$response = $client->getResponse();
+
+		return $response->getBody();
 	}
 }
