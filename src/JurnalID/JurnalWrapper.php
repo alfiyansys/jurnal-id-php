@@ -1,4 +1,11 @@
 <?php
+/*
+Jurnal.ID API Wrapper
+M. Alfiyan Syamsuddin (alfiyansys)
+mas@alfiyan.id
+
+@20191018
+*/
 
 namespace JurnalID;
 
