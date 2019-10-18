@@ -4,7 +4,9 @@ require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Compos
 
 use JurnalID\JurnalWrapper;
 
-$jurnal = new JurnalWrapper("testatasasedadasda");
+require "apikey.php";
+$jurnal = new JurnalWrapper($apikey, FALSE);
 
-echo $jurnal->get_api_key();
-echo $jurnal->get_endpoint();
+//echo $jurnal->get_api_key();
+//echo $jurnal->get_endpoint();
+echo $jurnal->jurnal_exec("accounts");

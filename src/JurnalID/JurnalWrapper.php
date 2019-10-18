@@ -25,32 +25,38 @@ class JurnalWrapper{
 	$payload : Data payload as array
 	$HTTP : HTTP request method
 	*/
-	public function jurnal_exec($cmd, $payload = array(),$HTTP = "GET"){
+	public function jurnal_exec($cmd, $payload = array(), $HTTP = "GET"){
 		$url = ($this->production)?SELF::API:SELF::SANDBOX_API;
+		
+		$payload = json_encode($payload);
+		$cmd_url = $url.$cmd;
 
-		$client = new http\Client;
-		$request = new http\Client\Request;
+		$curl = curl_init();
 
-		$body = new http\Message\Body;
-
-		$body->append(json_encode($payload));
-
-		$request->setRequestUrl($url.$cmd);
-		$request->setRequestMethod($HTTP);
-		$request->setBody($body);
-
-		$request->setQuery(new http\QueryString(array(
-			'include_archive' => 'true'
-		)));
-
-		$request->setHeaders(array(
-			'content-type' => 'application/json',
-			'apikey' => $this->apikey
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => $cmd_url,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => $HTTP,
+			CURLOPT_POSTFIELDS => $payload,
+			CURLOPT_HTTPHEADER => array(
+				"apikey: $this->apikey",
+				"content-type: application/json"
+			),
 		));
 
-		$client->enqueue($request)->send();
-		$response = $client->getResponse();
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
 
-		return $response->getBody();
+		curl_close($curl);
+
+		if ($err) {
+			return "cURL Error #:" . $err;
+		} else {
+			return $response;
+		}
 	}
 }
