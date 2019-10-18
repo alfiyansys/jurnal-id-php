@@ -53,10 +53,11 @@ class JurnalWrapper{
 
 		curl_close($curl);
 
-		if ($err) {
-			return "cURL Error #:" . $err;
+		if ($err) {			
+			return array("err", $err);
 		} else {
-			return $response;
+			// return decoded json data
+			return json_decode($response);
 		}
 	}
 }
