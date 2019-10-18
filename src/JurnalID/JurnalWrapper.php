@@ -19,4 +19,13 @@ class JurnalWrapper{
 	function get_endpoint(){
 		return ($this->production)?SELF::API:SELF::SANDBOX_API;
 	}
+
+	/*
+	$cmd : Command endpoint
+	$payload : Data payload as array
+	$HTTP : HTTP request method
+	*/
+	function jurnal_exec($cmd, $payload = array(),$HTTP = "GET"){
+
+	}
 }
