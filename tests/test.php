@@ -2,6 +2,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 
+function encd($inp = array()){
+	return json_encode($inp);
+}
+
 //use JurnalID\JurnalWrapper;
 use JurnalID\Accounts;
 
@@ -12,4 +16,4 @@ $accounts = new Accounts($apikey, FALSE);
 //echo $jurnal->get_api_key();
 //echo $jurnal->get_endpoint();
 //echo json_encode($jurnal->jurnal_exec("accounts"));
-echo json_encode($accounts->get());
+echo encd($accounts->get());
