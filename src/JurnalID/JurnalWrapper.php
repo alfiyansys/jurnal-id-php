@@ -49,6 +49,7 @@ class JurnalWrapper{
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => $HTTP,
 			CURLOPT_POSTFIELDS => $payload,
+			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_HTTPHEADER => array(
 				"apikey: $this->apikey",
 				"content-type: application/json"
