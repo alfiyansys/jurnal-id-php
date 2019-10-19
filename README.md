@@ -9,7 +9,8 @@ Using composer
 ### Direct API Access 
 Main wrapper class constructor:
 
-    Jurnal("YOUR-API-KEY-HERE", IS-PRODUCTION?);
+    use JurnalID\Jurnal;
+    new Jurnal("YOUR-API-KEY-HERE", IS-PRODUCTION?);
 
 **Example getting contacts**
 
@@ -18,4 +19,15 @@ Main wrapper class constructor:
     $jurnal_array = $jurnal->exec("contacts");
 
 ### Object Wrapped API Access
-**WIP**
+**This part is still work in progress**
+
+Example: Contact wrapper class constructor:
+
+    use JurnalID\Contacts as JContacts;
+    new JContacts("YOUR-API-KEY-HERE", IS-PRODUCTION?);
+
+**Example getting contacts**
+
+    use JurnalID\Contacts as JContacts;
+    $jcontacts = new JContacts($apikey, FALSE);
+    $jurnal_contact_array = $jcontacts->get();
