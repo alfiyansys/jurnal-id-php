@@ -8,14 +8,14 @@ mas@alfiyan.id
 */
 
 namespace JurnalID;
-use JurnalID\JurnalWrapper;
+use JurnalID\Jurnal;
 
-class Accounts extends JurnalWrapper{
+class Accounts extends Jurnal{
 	function __construct($apikey, $production = true){
 		parent::__construct($apikey, $production);
 	}
 
 	public function get(){
-		return $this->jurnal_exec("accounts");
+		return $this->exec("accounts");
 	}
 }

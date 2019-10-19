@@ -9,7 +9,7 @@ mas@alfiyan.id
 
 namespace JurnalID;
 
-class JurnalWrapper{
+class Jurnal{
 	public $apikey;
 	private $production;
 	private const SANDBOX_API = "https://sandbox-api.jurnal.id/core/api/v1/";
@@ -32,7 +32,7 @@ class JurnalWrapper{
 	$payload : Data payload as array
 	$HTTP : HTTP request method
 	*/
-	public function jurnal_exec($cmd, $payload = array(), $HTTP = "GET"){
+	public function exec($cmd, $payload = array(), $HTTP = "GET"){
 		$url = ($this->production)?SELF::API:SELF::SANDBOX_API;
 		
 		$payload = json_encode($payload);
