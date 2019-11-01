@@ -33,7 +33,7 @@ class Jurnal{
 	$HTTP : HTTP request method
 	*/
 	public function exec($cmd, $payload = array(), $HTTP = "GET"){
-		$url = ($this->production)?SELF::API:SELF::SANDBOX_API;
+		$url = $this->get_endpoint();
 		
 		$payload = json_encode($payload);
 		$cmd_url = $url.$cmd;
