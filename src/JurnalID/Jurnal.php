@@ -12,8 +12,8 @@ namespace JurnalID;
 class Jurnal{
 	public $apikey;
 	private $production;
-	private const SANDBOX_API = "https://sandbox-api.jurnal.id/core/api/v1/";
-	private const API = "https://api.jurnal.id/core/api/v1/";
+	const SANDBOX_API = "https://sandbox-api.jurnal.id/core/api/v1/";
+	const API = "https://api.jurnal.id/core/api/v1/";
 
 	function __construct($apikey, $production = true){
 		$this->apikey = $apikey;
